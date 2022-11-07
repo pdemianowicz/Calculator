@@ -1,0 +1,159 @@
+:root {
+  font-size: 100%;
+
+  --color-font: rgba(10, 10, 10, 0.967);
+  --color-hover: rgba(51, 51, 51, 0.1);
+  --color-white: rgba(255, 255, 255, 0.97);
+}
+
+@font-face {
+  font-family: Segoe;
+  src: url(./fonts/Segoe_UI.ttf);
+}
+
+body {
+  min-height: 100vh;
+  font-family: Segoe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-font);
+}
+
+img {
+  width: 100%;
+}
+
+.calc {
+  background-color: var(--color-hover);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.calc__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc__header p {
+  padding-left: 10px;
+  font-size: 13px;
+}
+
+.calc__header button {
+  border: none;
+  background-color: transparent;
+  padding: 8px 18px;
+  font-size: 14px;
+}
+
+.calc__header button:hover {
+  background-color: var(--color-hover);
+}
+
+.calc__header button:last-child:hover {
+  color: var(--color-white);
+  background-color: rgb(238, 68, 68);
+}
+
+.calc__nav {
+  display: flex;
+  align-items: center;
+}
+
+.calc__nav p {
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 0.8px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.icon {
+  width: 38px;
+  padding: 10px;
+}
+
+.icon:hover {
+  background-color: var(--color-hover);
+}
+
+.calc__display {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.calc__display input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background-color: transparent;
+  text-align: end;
+}
+
+.history_output {
+  padding-right: 8px;
+}
+
+.display_output {
+  color: var(--color-font);
+  font-size: 45px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.calc__memory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 21px;
+}
+
+.memory_item {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(154, 150, 150, 0.45);
+  padding: 8px;
+}
+
+.calc__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2px;
+  padding: 4px;
+}
+
+.btn {
+  font-family: inherit;
+  color: var(--color-font);
+  padding: 12px 24.7px;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background-color: var(--color-hover);
+}
+
+.btn-number {
+  background-color: var(--color-white);
+  font-weight: 600;
+}
+
+.btn-operator {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-invert {
+  background-color: var(--color-white);
+}
+
+.btn-equal {
+  background-color: rgb(134, 171, 194);
+}
+
+.btn-equal:hover {
+  background-color: rgb(77, 149, 194);
+}
