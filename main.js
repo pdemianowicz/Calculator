@@ -21,7 +21,7 @@ keys.addEventListener("click", (event) => {
     operation = keyValue;
 
     // if (displayValue === "0" && operation === "-") {
-    //   display.value = "-";
+    //   displayValue += operation;
     //   return;
     // }
 
@@ -70,13 +70,16 @@ keys.addEventListener("click", (event) => {
 
   // Equals
   if (type === "equals") {
+    if (!displayValue && !historyValue) return;
     lastNumb = displayValue;
     displayValue = calculate();
+    addHistory();
     display.value = displayValue;
     history.value = historyValue + " " + operator + " " + lastNumb + " =";
     historyValue = displayValue;
     console.log({ displayValue });
     displayValue = "";
+
     return;
   }
 });
@@ -102,7 +105,6 @@ function updateDisplay() {
 
 function chooseOperation(operation) {
   if (displayValue === "") return;
-
   if (historyValue !== "") {
     displayValue = calculate();
     // displayValue = displayValue.toFixed();
@@ -128,7 +130,7 @@ function calculate() {
   if (operator === "÷") {
     if (a === 0) {
       clearAll();
-      return " Nie wolno ";
+      return " Nope ";
     }
   }
   return a / b;
@@ -142,6 +144,51 @@ function clearAll() {
   operator = "";
 }
 
-// function addHistory() {
-//   history.innerHTML = `${previousNumber.innerHTML} ${mathSign.innerHTML}${currentNumber.innerHTML}  =`;
-// }
+function addHistory() {
+  const newResult = document.createElement("li");
+  newResult.innerText = `${historyValue} ${operator} ${lastNumb} = ${displayValue}`;
+  document.querySelector(".calc__history ul").appendChild(newResult);
+}
+
+// Navigation
+const primaryNav = document.querySelector(".primary-nav");
+const navToggle = document.querySelector(".menu-toggle");
+const calcHistory = document.querySelector(".calc__history");
+const historyIcon = document.querySelector(".history-icon");
+
+navToggle.addEventListener("click", () => {
+  const visibility = primaryNav.getAttribute("data-visible");
+
+  if (visibility === "false") {
+    primaryNav.setAttribute("data-visible", true);
+    navToggle.setAttribute("aria-expanded", true);
+  } else if (visibility === "true") {
+    primaryNav.setAttribute("data-visible", false);
+    navToggle.setAttribute("aria-expanded", false);
+  }
+});
+
+historyIcon.addEventListener("click", () => {
+  const visibility = calcHistory.getAttribute("data-visible");
+
+  if (visibility === "false") {
+    calcHistory.setAttribute("data-visible", true);
+    historyIcon.setAttribute("aria-expanded", true);
+  } else if (visibility === "true") {
+    calcHistory.setAttribute("data-visible", false);
+    historyIcon.setAttribute("aria-expanded", false);
+  }
+});
+
+// Close element when clicked outside
+document.addEventListener("click", (event) => {
+  if (!primaryNav.contains(event.target) && !navToggle.contains(event.target)) {
+    primaryNav.setAttribute("data-visible", false);
+    navToggle.setAttribute("aria-expanded", false);
+  }
+
+  if (!calcHistory.contains(event.target) && !historyIcon.contains(event.target)) {
+    calcHistory.setAttribute("data-visible", false);
+    historyIcon.setAttribute("aria-expanded", false);
+  }
+});

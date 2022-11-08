@@ -2,7 +2,7 @@
 
 A calculator built with HTML, CSS &amp; JS
 
-[Live Demo]()
+[Live Demo](https://pdemianowicz.github.io/Calculator/)
 
 ## Screenshots
 
